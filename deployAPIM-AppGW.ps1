@@ -7,7 +7,7 @@
 Connect-AzAccount
 
 # Set subscription
-$subscriptionId = "4b5e1984-19ba-4b4b-9476-e067a341d9da" #  GUID of target Azure subscription
+$subscriptionId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" #  GUID of target Azure subscription
 Get-AzSubscription -Subscriptionid $subscriptionId | Select-AzSubscription
 
 # Create resource group
@@ -36,13 +36,13 @@ $apimVirtualNetwork = New-AzApiManagementVirtualNetwork -SubnetResourceId $apims
 
 # Create an API-M service inside the VNET
 $apimServiceName = "apgw-apim-mytestapi-apim"                 # API Management service instance name (.azure-api.net suffix will be added so has to be globally unique)
-$apimOrganization = "gracemainesystems.com.ng"          # organization name
-$apimAdminEmail = "devteam@gracemainesystems.com.ng" # administrator's email address
+$apimOrganization = "your-domain.com.ng"          # organization name
+$apimAdminEmail = "devteam@your-domain.com.ng" # administrator's email address
 $apimService = New-AzApiManagement -ResourceGroupName $resGroupName -Location $location -Name $apimServiceName -Organization $apimOrganization -AdminEmail $apimAdminEmail -VirtualNetwork $apimVirtualNetwork -VpnType "Internal" -Sku "Developer"
 
 # Specify cert configuration
-$gatewayHostname = "api.gracemainesystems.com.ng"                 # API gateway host
-$portalHostname = "portal.gracemainesystems.com.ng"               # API developer portal host
+$gatewayHostname = "api.your-domain.com.ng"                 # API gateway host
+$portalHostname = "portal.your-domain.com.ng"               # API developer portal host
 $gatewayCertCerPath = "C:\azurecerts\apicert.cer" # full path to api.yourdomain.co.uk .cer file
 $gatewayCertPfxPath = "C:\azurecerts\apicert.pfx" # full path to api.yourdomain.co.uk .pfx file
 $portalCertPfxPath = "C:\azurecerts\portalcert.pfx"   # full path to portal.yourdomain.co.uk .pfx file
